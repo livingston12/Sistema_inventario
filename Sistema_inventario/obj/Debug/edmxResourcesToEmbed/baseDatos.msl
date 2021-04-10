@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sistemaModelStoreContainer" CdmEntityContainer="sistemaEntities">
+    <EntitySetMapping Name="categoria">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.categoria)">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.cliente)">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="DUI" ColumnName="DUI" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="compra">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.compra)">
+        <MappingFragment StoreEntitySet="compra">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="Precio_Compra" ColumnName="Precio_Compra" />
+          <ScalarProperty Name="Precio_Venta" ColumnName="Precio_Venta" />
+          <ScalarProperty Name="Fecha_Compra" ColumnName="Fecha_Compra" />
+          <ScalarProperty Name="Proveedor_IdProveedor" ColumnName="Proveedor_IdProveedor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_compra">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.detalle_compra)">
+        <MappingFragment StoreEntitySet="detalle_compra">
+          <ScalarProperty Name="IdDetalle_Compra" ColumnName="IdDetalle_Compra" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+          <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
+          <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_venta">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.detalle_venta)">
+        <MappingFragment StoreEntitySet="detalle_venta">
+          <ScalarProperty Name="IdDetalle_Venta" ColumnName="IdDetalle_Venta" />
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio_Unitario" ColumnName="Precio_Unitario" />
+          <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.producto)">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proveedor">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.proveedor)">
+        <MappingFragment StoreEntitySet="proveedor">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Numero_Documento" ColumnName="Numero_Documento" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reporte">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.reporte)">
+        <MappingFragment StoreEntitySet="reporte">
+          <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
+          <ScalarProperty Name="Tipo_Documento" ColumnName="Tipo_Documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.usuarios)">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venta">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.venta)">
+        <MappingFragment StoreEntitySet="venta">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Numero_Documento" ColumnName="Numero_Documento" />
+          <ScalarProperty Name="Tipo_Documento" ColumnName="Tipo_Documento" />
+          <ScalarProperty Name="Fecha_Venta" ColumnName="Fecha_Venta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_compras">
+      <EntityTypeMapping TypeName="IsTypeOf(sistemaModel.vw_compras)">
+        <MappingFragment StoreEntitySet="vw_compras">
+          <ScalarProperty Name="codigo_compra" ColumnName="codigo_compra" />
+          <ScalarProperty Name="proveedor" ColumnName="proveedor" />
+          <ScalarProperty Name="producto" ColumnName="producto" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Fecha_Compra" ColumnName="Fecha_Compra" />
+          <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+          <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ventas">
+      <EntityTypeMapping TypeName="sistemaModel.vw_ventas">
+        <MappingFragment StoreEntitySet="vw_ventas">
+          <ScalarProperty Name="Fecha_Venta" ColumnName="Fecha_Venta" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="vendedor" ColumnName="vendedor" />
+          <ScalarProperty Name="cliente" ColumnName="cliente" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="producto" ColumnName="producto" />
+          <ScalarProperty Name="tipo_pago" ColumnName="tipo_pago" />
+          <ScalarProperty Name="codigo_venta" ColumnName="codigo_venta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

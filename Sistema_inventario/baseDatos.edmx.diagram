@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4fecb97b034e436fa99fc4b76ee0d21a" Name="Diagram1">
+        <EntityTypeShape EntityType="sistemaModel.categoria" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.cliente" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.compra" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.detalle_compra" Width="1.5" PointX="7.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.detalle_venta" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.producto" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.proveedor" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.reporte" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.usuarios" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaModel.venta" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="sistemaModel.IdCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.IdCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.fk_Compra_Proveedor1" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.fk_Detalle_Compra_Compra1" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.fk_Detalle_Compra_Producto1" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.IdProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.IdReporte" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.IdVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.IdUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemaModel.FK__detalle_c__IdRep__47DBAE45" />
+        <EntityTypeShape EntityType="sistemaModel.vw_compras" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="sistemaModel.vw_ventas" Width="1.5" PointX="9.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

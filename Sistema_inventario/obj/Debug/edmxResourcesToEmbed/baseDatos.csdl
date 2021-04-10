@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="producto" Relationship="Self.IdCategoria" FromRole="categoria" ToRole="producto" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DUI" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="NIT" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="venta" Relationship="Self.IdCliente" FromRole="cliente" ToRole="venta" />
+  </EntityType>
+  <EntityType Name="compra">
+    <Key>
+      <PropertyRef Name="IdCompra" />
+    </Key>
+    <Property Name="IdCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Precio_Compra" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Precio_Venta" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Fecha_Compra" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Proveedor_IdProveedor" Type="Int32" />
+    <NavigationProperty Name="proveedor" Relationship="Self.fk_Compra_Proveedor1" FromRole="compra" ToRole="proveedor" />
+    <NavigationProperty Name="detalle_compra" Relationship="Self.fk_Detalle_Compra_Compra1" FromRole="compra" ToRole="detalle_compra" />
+  </EntityType>
+  <EntityType Name="detalle_compra">
+    <Key>
+      <PropertyRef Name="IdDetalle_Compra" />
+    </Key>
+    <Property Name="IdDetalle_Compra" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdCompra" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="compra" Relationship="Self.fk_Detalle_Compra_Compra1" FromRole="detalle_compra" ToRole="compra" />
+    <NavigationProperty Name="producto" Relationship="Self.fk_Detalle_Compra_Producto1" FromRole="detalle_compra" ToRole="producto" />
+    <Property Name="precio_venta" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="precio_compra" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdReporte" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="reporte" Relationship="sistemaModel.FK__detalle_c__IdRep__47DBAE45" FromRole="detalle_compra" ToRole="reporte" />
+  </EntityType>
+  <EntityType Name="detalle_venta">
+    <Key>
+      <PropertyRef Name="IdDetalle_Venta" />
+    </Key>
+    <Property Name="IdDetalle_Venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdVenta" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Precio_Unitario" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="IdReporte" Type="Int32" Nullable="false" />
+    <Property Name="Descuento" Type="Int32" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="producto" Relationship="Self.IdProducto" FromRole="detalle_venta" ToRole="producto" />
+    <NavigationProperty Name="reporte" Relationship="Self.IdReporte" FromRole="detalle_venta" ToRole="reporte" />
+    <NavigationProperty Name="venta" Relationship="Self.IdVenta" FromRole="detalle_venta" ToRole="venta" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Stock" Type="Int32" Nullable="false" />
+    <Property Name="IdCategoria" Type="Int32" />
+    <Property Name="IdProveedor" Type="Int32" />
+    <Property Name="PrecioUnitario" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="categoria" Relationship="Self.IdCategoria" FromRole="producto" ToRole="categoria" />
+    <NavigationProperty Name="detalle_compra" Relationship="Self.fk_Detalle_Compra_Producto1" FromRole="producto" ToRole="detalle_compra" />
+    <NavigationProperty Name="detalle_venta" Relationship="Self.IdProducto" FromRole="producto" ToRole="detalle_venta" />
+  </EntityType>
+  <EntityType Name="proveedor">
+    <Key>
+      <PropertyRef Name="IdProveedor" />
+    </Key>
+    <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Numero_Documento" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="compra" Relationship="Self.fk_Compra_Proveedor1" FromRole="proveedor" ToRole="compra" />
+  </EntityType>
+  <EntityType Name="reporte">
+    <Key>
+      <PropertyRef Name="IdReporte" />
+    </Key>
+    <Property Name="IdReporte" Type="Int32" Nullable="false" />
+    <Property Name="Tipo_Documento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="detalle_venta" Relationship="Self.IdReporte" FromRole="reporte" ToRole="detalle_venta" />
+    <NavigationProperty Name="detalle_compra" Relationship="sistemaModel.FK__detalle_c__IdRep__47DBAE45" FromRole="reporte" ToRole="detalle_compra" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNac" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Usuario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cargo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="venta" Relationship="Self.IdUsuario" FromRole="usuarios" ToRole="venta" />
+  </EntityType>
+  <EntityType Name="venta">
+    <Key>
+      <PropertyRef Name="IdVenta" />
+    </Key>
+    <Property Name="IdVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="Int32" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="Numero_Documento" Type="Int32" />
+    <Property Name="Tipo_Documento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_Venta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.IdCliente" FromRole="venta" ToRole="cliente" />
+    <NavigationProperty Name="detalle_venta" Relationship="Self.IdVenta" FromRole="venta" ToRole="detalle_venta" />
+    <NavigationProperty Name="usuarios" Relationship="Self.IdUsuario" FromRole="venta" ToRole="usuarios" />
+  </EntityType>
+  <Association Name="IdCategoria">
+    <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+    <End Role="producto" Type="Self.producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoria">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdCliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+    <End Role="venta" Type="Self.venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="venta">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Compra_Proveedor1">
+    <End Role="proveedor" Type="Self.proveedor" Multiplicity="0..1" />
+    <End Role="compra" Type="Self.compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedor">
+        <PropertyRef Name="IdProveedor" />
+      </Principal>
+      <Dependent Role="compra">
+        <PropertyRef Name="Proveedor_IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Detalle_Compra_Compra1">
+    <End Role="compra" Type="Self.compra" Multiplicity="1" />
+    <End Role="detalle_compra" Type="Self.detalle_compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="compra">
+        <PropertyRef Name="IdCompra" />
+      </Principal>
+      <Dependent Role="detalle_compra">
+        <PropertyRef Name="IdCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Detalle_Compra_Producto1">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="detalle_compra" Type="Self.detalle_compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="detalle_compra">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdProducto">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="detalle_venta" Type="Self.detalle_venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="detalle_venta">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdReporte">
+    <End Role="reporte" Type="Self.reporte" Multiplicity="1" />
+    <End Role="detalle_venta" Type="Self.detalle_venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reporte">
+        <PropertyRef Name="IdReporte" />
+      </Principal>
+      <Dependent Role="detalle_venta">
+        <PropertyRef Name="IdReporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdVenta">
+    <End Role="venta" Type="Self.venta" Multiplicity="1" />
+    <End Role="detalle_venta" Type="Self.detalle_venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="venta">
+        <PropertyRef Name="IdVenta" />
+      </Principal>
+      <Dependent Role="detalle_venta">
+        <PropertyRef Name="IdVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdUsuario">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="venta" Type="Self.venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="venta">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sistemaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categoria" EntityType="Self.categoria" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="compra" EntityType="Self.compra" />
+    <EntitySet Name="detalle_compra" EntityType="Self.detalle_compra" />
+    <EntitySet Name="detalle_venta" EntityType="Self.detalle_venta" />
+    <EntitySet Name="producto" EntityType="Self.producto" />
+    <EntitySet Name="proveedor" EntityType="Self.proveedor" />
+    <EntitySet Name="reporte" EntityType="Self.reporte" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+    <EntitySet Name="venta" EntityType="Self.venta" />
+    <AssociationSet Name="IdCategoria" Association="Self.IdCategoria">
+      <End Role="categoria" EntitySet="categoria" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="IdCliente" Association="Self.IdCliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="venta" EntitySet="venta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Compra_Proveedor1" Association="Self.fk_Compra_Proveedor1">
+      <End Role="proveedor" EntitySet="proveedor" />
+      <End Role="compra" EntitySet="compra" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Detalle_Compra_Compra1" Association="Self.fk_Detalle_Compra_Compra1">
+      <End Role="compra" EntitySet="compra" />
+      <End Role="detalle_compra" EntitySet="detalle_compra" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Detalle_Compra_Producto1" Association="Self.fk_Detalle_Compra_Producto1">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="detalle_compra" EntitySet="detalle_compra" />
+    </AssociationSet>
+    <AssociationSet Name="IdProducto" Association="Self.IdProducto">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="detalle_venta" EntitySet="detalle_venta" />
+    </AssociationSet>
+    <AssociationSet Name="IdReporte" Association="Self.IdReporte">
+      <End Role="reporte" EntitySet="reporte" />
+      <End Role="detalle_venta" EntitySet="detalle_venta" />
+    </AssociationSet>
+    <AssociationSet Name="IdVenta" Association="Self.IdVenta">
+      <End Role="venta" EntitySet="venta" />
+      <End Role="detalle_venta" EntitySet="detalle_venta" />
+    </AssociationSet>
+    <AssociationSet Name="IdUsuario" Association="Self.IdUsuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="venta" EntitySet="venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detalle_c__IdRep__47DBAE45" Association="sistemaModel.FK__detalle_c__IdRep__47DBAE45">
+      <End Role="reporte" EntitySet="reporte" />
+      <End Role="detalle_compra" EntitySet="detalle_compra" />
+    </AssociationSet>
+    <EntitySet Name="vw_compras" EntityType="sistemaModel.vw_compras" />
+    <EntitySet Name="vw_ventas" EntityType="sistemaModel.vw_ventas" />
+  </EntityContainer>
+  <Association Name="FK__detalle_c__IdRep__47DBAE45">
+    <End Type="sistemaModel.reporte" Role="reporte" Multiplicity="1" />
+    <End Type="sistemaModel.detalle_compra" Role="detalle_compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reporte">
+        <PropertyRef Name="IdReporte" />
+      </Principal>
+      <Dependent Role="detalle_compra">
+        <PropertyRef Name="IdReporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_compras">
+    <Key>
+      <PropertyRef Name="codigo_compra" />
+      <PropertyRef Name="proveedor" />
+      <PropertyRef Name="producto" />
+      <PropertyRef Name="Descripcion" />
+    </Key>
+    <Property Name="codigo_compra" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_Compra" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="proveedor" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="precio_venta" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="precio_compra" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="producto" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="categoria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_ventas">
+    <Key>
+      <PropertyRef Name="codigo_venta" />
+      <PropertyRef Name="producto" />
+      <PropertyRef Name="Descripcion" />
+      <PropertyRef Name="cliente" />
+      <PropertyRef Name="vendedor" />
+    </Key>
+    <Property Name="codigo_venta" Type="Int32" Nullable="false" />
+    <Property Name="tipo_pago" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="producto" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="cliente" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+    <Property Name="vendedor" Type="String" Nullable="false" MaxLength="91" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="descuento" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="29" Scale="0" />
+    <Property Name="Fecha_Venta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
